@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Images app</title>
+    </head>
+    <body>
+        <p>
+            <a href="/">Nazad na home</a> |
+            <a href="{% url 'index' %}">Popis slika</a>
+        </p>
+        <h3>Trenutno vrijeme: {{ trenutno_vrijeme }}</h3>
+        <h1>{{ image.title }}</h1>
+        <img src="{{ image.url }}" style="width: 600px;">
+        <p>Created at {{ image.created_at }}</p>
+
+        <h1>Komentari: <h1/>
+         <form method="post" action="{% url 'create-comment' image.id %}">
+            {% csrf_token %}
+            <label for="author">Autor: </label>
+            <input type="text" id="author" name="author" />
+
+            <label for="text">Text: </label>
+            <input type="text" id="text" name="text" />
+            <input type="submit" value="Komentiraj!"/>
+         </form>
+
+        {% for comment in comments %}
+            <p>
+                <strong> {{ comment.author }}:</strong>
+                {{ comment.text }} <br>
+                <small>{{ comment.created_at }}</small>
+            </p>
+        {% endfor %}
+
+    </body>
+</html>

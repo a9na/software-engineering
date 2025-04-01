@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Images app | {{ image.title }}</title>
+    </head>
+    <body>
+        <p>
+            <a href="{% url 'index' %}">Nazad na sve slike</a> |
+        </p>
+        <h1>{{ image.title }}</h1>
+        <p><small>
+            Likes: {{ image.likes }} |
+            Views: {{ image.views }}
+
+            Created at: {{ image.created_at }}</small></p>
+            <p>
+                <form method="post"
+                    action="{% url 'like-image' image.id %}">
+                        { % csrf_token % }
+                    <input type="submit" value="Like">
+                </form>
+            </p>
+        <img src="{{ image.url }}" style="width: 100%;">
+        <div>
+            <h1>Komentari</h1>
+            <form method="post"
+                  action="{% url 'create_comment' image.id %}">
+                {% csrf_token %}
+                <label for="author">Autor</label>
+                <input type="text" name="author"/>
+
+                <label for="text">Text</label>
+                <input type="text" name="text"/>
+                
+                <input type="submit" value="Objavi komentar"/>
+            </form>
+            {% for comment in komentari %}
+                <p>
+                    <strong>{{ comment.author }}:</strong> 
+                    {{ comment.text }} <br>
+                    <small>{{ comment.created_at }}</small>
+
+                </p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Images app | Submit image</title>
+    </head>
+    <body>
+        <p>
+            <a href="{% url 'index' %}">Nazad na sve slike</a> |
+        </p>
+        <h1>Dodaj novu sliku</h1>
+        <form method="post"
+              action="">
+              { % csrf_token % }
+            <label>Title</label>
+            <input type="text" name="title">
+            <br>
+            <label>URL</label>
+            <input type="text" name="url">
+            <br>
+            <input type="submit" value="Učitaj sliku" >
+
+            </form>
+    </body>
+</html>

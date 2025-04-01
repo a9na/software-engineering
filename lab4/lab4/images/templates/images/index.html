@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Images App</title>
+    </head>
+    <body>
+        <p><a href="/">Nazad na home</a> |
+        <a href="/testni.url">Testni URL</a></p>
+        <h1>Welcome to images app</h1>
+        <p>Sve slike</p>
+        <div>
+            {% for image in images %}
+                <h2>{{ image.title }}</h2>
+                <p><small>Created at: {{ image.created_at }}</small></p>
+                <img src = "{{ image.url }}" style="width: 300px"/>
+            {% endfor %}
+        </div>
+    </body>
+</html>

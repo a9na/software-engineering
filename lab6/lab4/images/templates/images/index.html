@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>Images app</title>
+    </head>
+    <body>
+        <p>
+            <a href="{% url 'home' %}">Nazad na home</a> |
+            <a href="{% url 'create-image' %}">Dodaj sliku</a> |
+        </p>
+        <h1>Welcome to images app</h1>
+        <p>Sve slike:</p>
+        <div>
+            {% for image in images %}
+                <h2>
+                    <a href="{% url 'detail' image.id %}">
+                        {{ image.title }}
+                    </a>
+                </h2>
+                <p><small>
+                    Likes: {{ image.likes }} |
+                    Views: {{ image.views }}
+                    Created at: {{ image.created_at }}
+                </small></p>
+                <img src="{{ image.url }}" style="width: 300px;"/>
+            {% endfor %}
+        </div>
+    </body>
+</html>
